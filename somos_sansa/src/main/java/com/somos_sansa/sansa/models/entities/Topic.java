@@ -22,7 +22,7 @@ public class Topic {
     private String title;
 
     @Column(name = "created_at", nullable = false)
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
     @ManyToOne
     @JoinColumn(name = "id_branch", nullable = false)
@@ -48,12 +48,12 @@ public class Topic {
         this.title = title;
     }
 
-    public LocalDateTime getCreated_at() {
-        return created_at;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(LocalDateTime created_at) {
-        this.created_at = created_at;
+    public void setCreated_at(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 
     public Branch getBranch() {

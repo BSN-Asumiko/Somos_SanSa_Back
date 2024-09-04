@@ -24,7 +24,7 @@ public class User {
     private int id;
 
     @Column(name = "nickname", length = 30, nullable = false)
-    private String name;
+    private String nickname;
 
     @Column(name = "email", length = 50, nullable = false)
     private String email;
@@ -33,7 +33,7 @@ public class User {
     private String password;
 
     @Column(name = "avatar_url", nullable = false)
-    private String avatar_url;
+    private String avatarUrl;
 
     @Column(name = "district", nullable = false)
     private String district;
@@ -59,12 +59,12 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNickame() {
+        return nickname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNickame(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getEmail() {
@@ -83,12 +83,12 @@ public class User {
         this.password = password;
     }
 
-    public String getAvatar_url() {
-        return avatar_url;
+    public String getavatarUrl() {
+        return avatarUrl;
     }
 
-    public void setAvatar_url(String avatar_url) {
-        this.avatar_url = avatar_url;
+    public void setavatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 
     public String getDistrict() {
