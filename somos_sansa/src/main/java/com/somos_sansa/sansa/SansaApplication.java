@@ -17,6 +17,7 @@ public class SansaApplication {
         System.setProperty("DB_PASSWORD", dotenv.get("DB_PASSWORD"));
 
 		SpringApplication.run(SansaApplication.class, args);
+		System.out.println("Hello World");
 	}
 
 }

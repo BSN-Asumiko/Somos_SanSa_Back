@@ -1,13 +1,9 @@
 package com.somos_sansa.sansa.models.entities;
 
-import java.util.HashSet;
 import java.util.Set;
-
-import javax.management.relation.Role;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -38,14 +34,12 @@ public class User {
     @Column(name = "district", nullable = false)
     private String district;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(
         name = "user_roles",
         joinColumns = @JoinColumn(name = "user_id"),
-        inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-
-    private Set<Role> roles = new HashSet<>();
+        inverseJoinColumns = @JoinColumn(name = "role_id"))
+        private Set<Role> roles;
     
     private String token;
 
