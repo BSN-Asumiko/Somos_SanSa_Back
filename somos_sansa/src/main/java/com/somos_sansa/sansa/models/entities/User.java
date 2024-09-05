@@ -77,11 +77,11 @@ public class User {
         this.password = password;
     }
 
-    public String getavatarUrl() {
+    public String getAvatarUrl() {
         return avatarUrl;
     }
 
-    public void setavatarUrl(String avatarUrl) {
+    public void setAvatarUrl(String avatarUrl) {
         this.avatarUrl = avatarUrl;
     }
 
