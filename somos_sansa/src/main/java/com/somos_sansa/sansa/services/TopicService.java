@@ -31,6 +31,14 @@ public class TopicService {
         return topicList;
     }
 
+    public List<Topic> getTopicsByBranchId(int branchId) throws SanSaException {
+        List<Topic> topicList = topicRepository.findByBranchId(branchId);
+        if (topicList == null || topicList.size() == 0) {
+            throw new SanSaException("No hay temas en esta sección", HttpStatus.NOT_FOUND);
+        }
+        return topicList;
+    }
+
     public void addNewTopic(Topic topic) throws SanSaException {
         if (topic.getTitle() == null || topic.getTitle().isEmpty()) {
             throw new SanSaException("El título del tema no puede estar vacío.", HttpStatus.BAD_REQUEST);
@@ -58,11 +66,19 @@ public class TopicService {
 
         Branch existingBranch = branchService.getBranchById(branch.getId());
         if (existingBranch == null) {
-            throw new SanSaException("Usuario no encontrado.", HttpStatus.NOT_FOUND);
+            throw new SanSaException("Sección no encontrada.", HttpStatus.NOT_FOUND);
         }
         topic.setBranch(existingBranch);
 
         topicRepository.save(topic);
+    }
+
+    public Topic getTopicById(int topicId) throws SanSaException {
+        Topic topic = topicRepository.findById(topicId).orElse(null);
+        if (topic == null) {
+            throw new SanSaException("Tema no encontrado.", HttpStatus.NOT_FOUND);
+        }
+        return topic;
     }
 
 }

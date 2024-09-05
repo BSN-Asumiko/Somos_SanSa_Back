@@ -4,7 +4,7 @@ import static com.somos_sansa.sansa.config.security.ConstantsSecurity.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.somos_sansa.sansa.exception.SanSaException;
@@ -21,7 +21,7 @@ public class BranchController {
         this.branchService=branchService;
     }
 
-    @PostMapping(GET_ALL_BRANCHES)
+    @GetMapping(GET_ALL_BRANCHES)
     public List<BranchDTO> getAllBranches () throws SanSaException {
         List<Branch> branches = branchService.getAllBranches();
         List<BranchDTO> branchesDTO = branches.stream().map(EntityToDTOMapper::convertToBranchDTO)
