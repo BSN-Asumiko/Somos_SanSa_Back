@@ -53,11 +53,11 @@ public class User {
         this.id = id;
     }
 
-    public String getNickame() {
+    public String getNickname() {
         return nickname;
     }
 
-    public void setNickame(String nickname) {
+    public void setNickname(String nickname) {
         this.nickname = nickname;
     }
 

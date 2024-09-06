@@ -44,10 +44,6 @@ public class TopicService {
             throw new SanSaException("El título del tema no puede estar vacío.", HttpStatus.BAD_REQUEST);
         }
 
-        if (topic.getCreatedAt() == null) {
-            throw new SanSaException("La hora de creación del tema no puede estar vacía.", HttpStatus.BAD_REQUEST);
-        }
-
         User user = topic.getUser();
         if (user == null || !user.isIdSet()) {
             throw new SanSaException("Usuario no especificado.", HttpStatus.BAD_REQUEST);

@@ -14,7 +14,7 @@ public class EntityToDTOMapper {
     public static UserDTO convertToUserDTO(User user) {
         return new UserDTO(
             user.getId(),
-            user.getNickame(),
+            user.getNickname(),
             user.getAvatarUrl(),
             user.getDistrict()
             );

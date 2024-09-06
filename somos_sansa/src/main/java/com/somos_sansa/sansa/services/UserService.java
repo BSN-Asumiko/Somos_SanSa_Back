@@ -2,8 +2,10 @@ package com.somos_sansa.sansa.services;
 
 import java.util.Optional;
 
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.orm.jpa.JpaObjectRetrievalFailureException;
 import org.springframework.stereotype.Service;
 
 import com.somos_sansa.sansa.exception.SanSaException;
@@ -48,6 +50,22 @@ public class UserService {
 
     public Optional<User> getUserByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    public void updateUserProfile(User user) throws SanSaException {
+
+        try {
+            User existingUser = getUserById(user.getId());
+
+            existingUser.setNickname(user.getNickname());
+            existingUser.setAvatarUrl(user.getAvatarUrl());
+            existingUser.setDistrict(user.getDistrict());
+            
+            userRepository.save(existingUser);
+        
+        } catch (IllegalArgumentException | OptimisticLockingFailureException | JpaObjectRetrievalFailureException exc) {
+            throw new SanSaException("Failed to update user profile: " + exc.getMessage());
+        }
     }
 
     //DESCOMMENT WHEN SECURITY IS CONFIGURED
