@@ -21,7 +21,7 @@ public class BranchController {
         this.branchService=branchService;
     }
 
-    @GetMapping(GET_ALL_BRANCHES)
+    @GetMapping(GET_ALL_BRANCHES_URL)
     public List<BranchDTO> getAllBranches () throws SanSaException {
         List<Branch> branches = branchService.getAllBranches();
         List<BranchDTO> branchesDTO = branches.stream().map(EntityToDTOMapper::convertToBranchDTO)

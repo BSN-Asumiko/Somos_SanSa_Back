@@ -26,7 +26,7 @@ public class TopicController {
         this.topicService = topicService;
     }
 
-    @GetMapping(GET_TOPICS_BY_BRANCH)
+    @GetMapping(GET_TOPICS_BY_BRANCH_URL)
     public List<TopicDTO> getTopicsByBranch(@PathVariable int branchId) throws SanSaException {
         List<Topic> topics = topicService.getTopicsByBranchId(branchId);
         return topics.stream()
@@ -34,7 +34,7 @@ public class TopicController {
                 .collect(Collectors.toList());
     }
 
-    @PostMapping(ADD_NEW_TOPIC)
+    @PostMapping(ADD_NEW_TOPIC_URL)
     public ResponseEntity<TopicDTO> addNeWTopic(@RequestBody Topic topic)
             throws SanSaException {
         topicService.addNewTopic(topic);

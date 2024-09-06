@@ -1,4 +1,5 @@
 package com.somos_sansa.sansa.controllers;
+
 import static com.somos_sansa.sansa.config.security.ConstantsSecurity.*;
 
 import java.util.List;
@@ -25,18 +26,18 @@ public class CommentController {
     private final CommentService commentService;
 
     public CommentController(CommentService commentService) {
-        this.commentService=commentService;
+        this.commentService = commentService;
     }
 
-    @GetMapping(GET_COMMENTS_BY_TOPIC)
-    public List<CommentDTO> getCommentsByTopic (@PathVariable int topicId) throws SanSaException {
+    @GetMapping(GET_COMMENTS_BY_TOPIC_URL)
+    public List<CommentDTO> getCommentsByTopic(@PathVariable int topicId) throws SanSaException {
         List<Comment> comments = commentService.getCommentsByTopicId(topicId);
         return comments.stream()
                 .map(EntityToDTOMapper::convertToCommentDTO)
                 .collect(Collectors.toList());
     }
 
-    @PostMapping(ADD_NEW_COMMENT)
+    @PostMapping(ADD_NEW_COMMENT_URL)
     public ResponseEntity<CommentDTO> addNeWComment(@RequestBody Comment comment)
             throws SanSaException {
         commentService.addNewComment(comment);
@@ -44,17 +45,24 @@ public class CommentController {
         return new ResponseEntity<>(resultDTO, HttpStatus.CREATED);
     }
 
-    @PutMapping(UPDATE_COMMENT)
+    @PutMapping(UPDATE_COMMENT_URL)
     public ResponseEntity<Object> updateComment(@PathVariable int id, @RequestBody Comment comment)
             throws SanSaException {
-        comment.setId(id); 
+        comment.setId(id);
         commentService.updateComment(comment);
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping(DELETE_COMMENT)
+    @DeleteMapping(DELETE_COMMENT_URL)
     public ResponseEntity<Object> deleteComment(@PathVariable int id) throws SanSaException {
         return commentService.deleteComment(id);
+    }
+
+    @GetMapping(GET_COMMENT_BY_ID_URL)
+    public ResponseEntity<CommentDTO> getCommentById(@PathVariable int id) throws SanSaException {
+        Comment comment = commentService.getCommentById(id); 
+        CommentDTO commentDTO = EntityToDTOMapper.convertToCommentDTO(comment); 
+        return ResponseEntity.ok(commentDTO);
     }
 
 }
