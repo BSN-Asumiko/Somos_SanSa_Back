@@ -7,14 +7,14 @@ public class CommentDTO {
     private String text;
     private LocalDateTime createdAt;
     private TopicDTO topicDTO;
-    private UserDTO userDTO;
+    private UserDTO userCommentDTO;
 
-    public CommentDTO(int id, String text, LocalDateTime createdAt, TopicDTO topicDTO, UserDTO userDTO) {
+    public CommentDTO(int id, String text, LocalDateTime createdAt, TopicDTO topicDTO, UserDTO userCommentDTO) {
         this.id=id;
         this.text=text;
         this.createdAt=createdAt;
         this.topicDTO=topicDTO;
-        this.userDTO=userDTO;
+        this.userCommentDTO=userCommentDTO;
     }
 
     public int getId() {
@@ -41,11 +41,11 @@ public class CommentDTO {
     public void setTopicDTO(TopicDTO topicDTO) {
         this.topicDTO = topicDTO;
     }
-    public UserDTO getUserDTO() {
-        return userDTO;
+    public UserDTO getUserCommentDTO() {
+        return userCommentDTO;
     }
-    public void setUserDTO(UserDTO userDTO) {
-        this.userDTO = userDTO;
+    public void setUserCommentDTO(UserDTO userCommentDTO) {
+        this.userCommentDTO = userCommentDTO;
     }
 
     

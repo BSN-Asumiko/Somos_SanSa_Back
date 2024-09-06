@@ -6,6 +6,8 @@ import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.orm.jpa.JpaObjectRetrievalFailureException;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.somos_sansa.sansa.exception.SanSaException;
@@ -39,6 +41,7 @@ public class UserService {
         userRepository.save(savedUser);
         return new ResponseEntity<>("El usuario se ha registrado con exito!", HttpStatus.CREATED);
     }
+    
 
     public User getUserById(int userId) throws SanSaException {
         User user = userRepository.findById(userId).orElse(null);
@@ -68,8 +71,7 @@ public class UserService {
         }
     }
 
-    //DESCOMMENT WHEN SECURITY IS CONFIGURED
-    /* public Optional<User> getUserFromContext() {
+    public Optional<User> getUserFromContext() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if (principal instanceof UserDetails) {
@@ -82,5 +84,5 @@ public class UserService {
         } else {
             throw new RuntimeException("Usuario no autenticado");
         }
-    } */
+    }
 }
