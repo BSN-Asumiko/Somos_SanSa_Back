@@ -1,4 +1,4 @@
-package com.somos_sansa.sansa.models.entities;
+package com.somos_sansa.sansa.models.dto.auth;
 
 public class LoginRequest {
     private String email;
