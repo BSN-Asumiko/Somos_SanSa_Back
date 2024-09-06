@@ -7,23 +7,25 @@ public class ConstantsSecurity {
     //front-end part
     public static final String LOCALHOST_FRONT_URL = "http://localhost:5173";
 
-    //log in and sign in
+    //users
     public static final String LOGIN_URL = "/auth/log_in";
     public static final String SIGNIN_URL = "/auth/sign_in";
+    public static final String UPDATE_PROFILE_URL = "/api/profile/update/{profileId}";
     
     //branches
     public static final String GET_ALL_BRANCHES_URL = "/auth/branches";
+    //public static final String ADD_NEW_BRANCH_URL = "/auth/branches/add"; for future development - this endpoint should be changed for only admin can use
 
     //topics
     public static final String GET_TOPICS_BY_BRANCH_URL = "/auth/branches/{branchId}/topics";
-    public static final String ADD_NEW_TOPIC_URL = "/api/topic/add";
+    public static final String ADD_NEW_TOPIC_URL = "/api/topics/add";
 
     //comments
     public static final String GET_COMMENTS_BY_TOPIC_URL = "/auth/topics/{topicId}/comments";
     public static final String ADD_NEW_COMMENT_URL = "/api/comments/add";
-    public static final String UPDATE_COMMENT_URL = "/api/comments/update/{id}";
-    public static final String DELETE_COMMENT_URL = "/api/comments/delete/{id}";
-    public static final String GET_COMMENT_BY_ID_URL = "/api/comments/{id}";
+    public static final String UPDATE_COMMENT_URL = "/api/comments/update/{commentId}";
+    public static final String DELETE_COMMENT_URL = "/api/comments/delete/{commentId}";
+    public static final String GET_COMMENT_BY_ID_URL = "/api/comments/{commentId}";
     
 
     //Spring Security

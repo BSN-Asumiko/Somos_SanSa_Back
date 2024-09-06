@@ -32,4 +32,9 @@ public class BranchService {
         }
         return branch;
     }
+
+    public void addNewBranch (Branch branch) throws SanSaException{
+        
+        branchRepository.save(branch);
+    }
 }

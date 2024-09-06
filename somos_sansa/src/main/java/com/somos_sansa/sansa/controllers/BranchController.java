@@ -4,9 +4,14 @@ import static com.somos_sansa.sansa.config.security.ConstantsSecurity.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+//FOR ADDING A NEW BRANCH
+//import org.springframework.http.HttpStatus;
+//import org.springframework.http.ResponseEntity;
+//import org.springframework.web.bind.annotation.PostMapping;
+//import org.springframework.web.bind.annotation.RequestBody;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.somos_sansa.sansa.exception.SanSaException;
 import com.somos_sansa.sansa.mapper.EntityToDTOMapper;
 import com.somos_sansa.sansa.models.dto.BranchDTO;
@@ -28,5 +33,15 @@ public class BranchController {
                 .collect(Collectors.toList());
         return branchesDTO;
     }
+
+    //FOR FUTURE DEVELOPMENT - ONLY ADMIN CAN ADD 
+    /* @PostMapping(ADD_NEW_BRANCH_URL)
+    public ResponseEntity<BranchDTO> addNeWBranch(@RequestBody Branch branch)
+            throws SanSaException {
+        branchService.addNewBranch(branch);
+        BranchDTO resultDTO = EntityToDTOMapper.convertToBranchDTO(branch);
+        return new ResponseEntity<>(resultDTO, HttpStatus.CREATED);
+    } */
+
     
 }
