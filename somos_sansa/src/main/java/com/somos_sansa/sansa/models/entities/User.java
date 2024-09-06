@@ -53,11 +53,11 @@ public class User {
         this.id = id;
     }
 
-    public String getNickame() {
+    public String getNickname() {
         return nickname;
     }
 
-    public void setNickame(String nickname) {
+    public void setNickname(String nickname) {
         this.nickname = nickname;
     }
 
@@ -77,11 +77,11 @@ public class User {
         this.password = password;
     }
 
-    public String getavatarUrl() {
+    public String getAvatarUrl() {
         return avatarUrl;
     }
 
-    public void setavatarUrl(String avatarUrl) {
+    public void setAvatarUrl(String avatarUrl) {
         this.avatarUrl = avatarUrl;
     }
 
