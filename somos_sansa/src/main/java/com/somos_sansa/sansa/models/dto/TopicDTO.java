@@ -7,14 +7,14 @@ public class TopicDTO {
     private String title;
     private LocalDateTime createdAt;
     private BranchDTO branchDTO;
-    private UserDTO userDTO;
+    private UserDTO userTopicDTO;
 
-    public TopicDTO(int id, String title, LocalDateTime createdAt, BranchDTO branchDTO, UserDTO userDTO) {
+    public TopicDTO(int id, String title, LocalDateTime createdAt, BranchDTO branchDTO, UserDTO userTopicDTO) {
         this.id=id;
         this.title=title;
         this.createdAt=createdAt;
         this.branchDTO=branchDTO;
-        this.userDTO=userDTO;
+        this.userTopicDTO=userTopicDTO;
     }
 
     public int getId() {
@@ -41,11 +41,11 @@ public class TopicDTO {
     public void setBranchDTO(BranchDTO branchDTO) {
         this.branchDTO = branchDTO;
     }
-    public UserDTO getUserDTO() {
-        return userDTO;
+    public UserDTO getUserTopicDTO() {
+        return userTopicDTO;
     }
-    public void setUserDTO(UserDTO userDTO) {
-        this.userDTO = userDTO;
+    public void setUserTopicDTO(UserDTO userTopicDTO) {
+        this.userTopicDTO = userTopicDTO;
     }
 
     

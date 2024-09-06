@@ -1,5 +1,6 @@
 package com.somos_sansa.sansa.models.entities;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -28,10 +29,10 @@ public class User {
     @Column(name = "password", length = 10, nullable = false)
     private String password;
 
-    @Column(name = "avatar_url", nullable = false)
+    @Column(name = "avatar_url")
     private String avatarUrl;
 
-    @Column(name = "district", nullable = false)
+    @Column(name = "district", length = 30)
     private String district;
 
     @ManyToMany
@@ -39,7 +40,13 @@ public class User {
         name = "user_roles",
         joinColumns = @JoinColumn(name = "user_id"),
         inverseJoinColumns = @JoinColumn(name = "role_id"))
-        private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>();
+    /* @ManyToMany
+    @JoinTable(
+        name = "user_roles",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "role_id"))
+        private Set<Role> roles; */
     
     private String token;
 

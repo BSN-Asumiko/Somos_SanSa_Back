@@ -1,7 +1,6 @@
 package com.somos_sansa.sansa.config.security;
 import static com.somos_sansa.sansa.config.security.ConstantsSecurity.*;
 
-import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.sql.Date;
 import java.util.List;
@@ -15,10 +14,11 @@ import io.jsonwebtoken.security.Keys;
 
 @Configuration
 public class JWTAuthenticationConfig {
-    public static Key getSigningKey(String secret) {
-		byte[] keyBytes = secret.getBytes(StandardCharsets.UTF_8);
-		return Keys.hmacShaKeyFor(keyBytes);
-	}
+    private static final Key SIGNING_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS512); // Generates a secure key for HS512
+
+    public static Key getSigningKey() {
+        return SIGNING_KEY;
+    }
     
     public String getJWTToken(String email) {
         List<GrantedAuthority> grantedAuthorities = AuthorityUtils.commaSeparatedStringToAuthorityList("USER");
@@ -33,9 +33,9 @@ public class JWTAuthenticationConfig {
                                 .collect(Collectors.toList()))
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + TOKEN_EXPIRATION_TIME))
-                .signWith(getSigningKey(SECRET_KEY),  SignatureAlgorithm.HS512).compact();
+                .signWith(getSigningKey(), SignatureAlgorithm.HS512) // Use the static key for signing
+                .compact();
 
         return TOKEN_BEARER_PREFIX + token; 
     }
-
 }
