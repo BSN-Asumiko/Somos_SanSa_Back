@@ -16,10 +16,10 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import com.somos_sansa.sansa.models.BodyErrorMessage;
 
 @ControllerAdvice
-public class SanSaResponseEntityExceptionHandler extends ResponseEntityExceptionHandler{
+public class SanSaResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(SanSaException.class)
-    public ResponseEntity<BodyErrorMessage> handleSanSaException (SanSaException exception) {
+    public ResponseEntity<BodyErrorMessage> handleSanSaException(SanSaException exception) {
         HttpStatus httpStatus = exception.getHttpStatus();
         if (httpStatus == null) {
             httpStatus = HttpStatus.NOT_FOUND;
@@ -28,19 +28,18 @@ public class SanSaResponseEntityExceptionHandler extends ResponseEntityException
         bodyErrorMessage.setHttpStatus(httpStatus.value());
         bodyErrorMessage.setMessage(exception.getMessage());
         return ResponseEntity.status(httpStatus).body(bodyErrorMessage);
-
     }
 
     @ExceptionHandler(DataAccessException.class)
     public ResponseEntity<BodyErrorMessage> handleConnectionError(DataAccessException ex) {
         BodyErrorMessage response = new BodyErrorMessage();
         response.setHttpStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
-        response.setMessage("Error de conexión con la base de datos: " + ex.getMessage()); 
+        response.setMessage("Error de conexión con la base de datos: " + ex.getMessage());
         return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<BodyErrorMessage> handleGeneralException(Exception ex){
+    public ResponseEntity<BodyErrorMessage> handleGeneralException(Exception ex) {
         BodyErrorMessage message = new BodyErrorMessage();
         message.setHttpStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
         message.setMessage("Error inesperado " + ex.getMessage());
@@ -49,17 +48,15 @@ public class SanSaResponseEntityExceptionHandler extends ResponseEntityException
 
     @ExceptionHandler(AuthenticationException.class)
     public ResponseEntity<String> handleAuthenticationException(AuthenticationException ex, WebRequest request) {
-        
+
         System.err.println("Authentication error: " + ex.getMessage());
         return new ResponseEntity<>("Authentication failed: " + ex.getMessage(), HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(AccessDeniedException.class)
     public ResponseEntity<String> handleAccessDeniedException(AccessDeniedException ex, WebRequest request) {
-        
+
         System.err.println("Access denied: " + ex.getMessage());
         return new ResponseEntity<>("Access denied: " + ex.getMessage(), HttpStatus.FORBIDDEN);
     }
 }
-
-
