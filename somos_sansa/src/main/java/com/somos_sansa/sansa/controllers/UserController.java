@@ -50,27 +50,6 @@ public class UserController {
         }
     }
 
-    /*
-     * @PostMapping(LOGIN_URL)
-     * public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest
-     * loginRequest) {
-     * Optional<User> user = userService.getUserByEmail(loginRequest.getEmail());
-     * 
-     * if (user.isPresent()) {
-     * User finalUser = user.get();
-     * String token = jwtAuthenticationConfig.getJWTToken(loginRequest.getEmail());
-     * 
-     * UserDTO resultDTO = EntityToDTOMapper.convertToUserDTO(finalUser);
-     * 
-     * LoginResponse response = new LoginResponse(token, resultDTO);
-     * 
-     * return ResponseEntity.ok(response);
-     * } else {
-     * throw new IOException("FAIL Authentication");
-     * }
-     * }
-     */
-
     @PostMapping(SIGNIN_URL)
     public ResponseEntity<?> signIn(@RequestBody User user) throws SanSaException {
         return userService.addNewUser(user);
